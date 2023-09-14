@@ -2,7 +2,7 @@
 #include <sys/time.h>
 #include <stdlib.h>
 
-#define max 800
+#define max 1000
 #define blockSize 100
 
 void initializeMatrix(int matrix[max][max], int value) {
