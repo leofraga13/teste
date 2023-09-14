@@ -3,14 +3,22 @@
 #include <stdlib.h>
 
 int main(void) {
-  int n = 500;
+  int n = 1000;
   int par = 0;
-  int a[n][n];
-  int b[n][n];
-  int c[n][n];
-
+  
+  int **a = calloc(n, sizeof(int* ));
+  int **b = calloc(n, sizeof(int* ));
+  int **c = calloc(n, sizeof(int* ));
+  
   struct timeval tv;
   double start_t, end_t, tempo_gasto;
+
+  
+  for(int i=0; i< n; i++){ 
+    a[i] = calloc(n, sizeof(int *));
+    b[i] = calloc(n, sizeof(int *));
+    c[i] = calloc(n, sizeof(int *));
+  }
 
   //Inicializando Matriz
   for(int i = 0; i < n; i++){
@@ -19,6 +27,7 @@ int main(void) {
       b[i][j]= i * j;
     }
   }
+
   
   //EXECUÇÃO DO PROGRAMA
   
@@ -49,5 +58,14 @@ int main(void) {
   end_t = (double) tv.tv_sec + (double) tv.tv_usec / 1000000.0;
   tempo_gasto = end_t - start_t;
   printf("\nTempo %f usecs\n", tempo_gasto);
+
+  for (int i = 0; i < n; i++) {
+    free(a[i]);
+    free(b[i]);
+    free(c[i]);
+  }
+  free(a);
+  free(b);
+  free(c);
   return 0;
 }
