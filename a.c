@@ -3,6 +3,12 @@
 #include <stdlib.h>
 
 int main(void) {
+  struct timeval tv;
+  double start_t, end_t, tempo_gasto;
+  
+  gettimeofday(&tv, NULL);
+  start_t = (double) tv.tv_sec + (double)tv.tv_usec / 1000000.0;
+  
   int n = 1000;
   int par = 0;
   
@@ -10,9 +16,6 @@ int main(void) {
   int **b = calloc(n, sizeof(int* ));
   int **c = calloc(n, sizeof(int* ));
   
-  struct timeval tv;
-  double start_t, end_t, tempo_gasto;
-
   
   for(int i=0; i< n; i++){ 
     a[i] = calloc(n, sizeof(int *));
@@ -28,11 +31,6 @@ int main(void) {
     }
   }
 
-  
-  //EXECUÇÃO DO PROGRAMA
-  
-  gettimeofday(&tv, NULL);
-  start_t = (double) tv.tv_sec + (double)tv.tv_usec / 1000000.0;
   
   //verificaando quantos elementos são pares
   for(int i = 0; i < n; i++){
